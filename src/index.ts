@@ -19,13 +19,13 @@ router.post("/api/user/register",
     async (req: Request, res: Response):Promise<any> => {
         const errors: Result<ValidationError> = validationResult(req)
         if(!errors.isEmpty()) {
-            //console.log(errors);
+            console.log(errors);
             return res.status(400).json({errors: errors.array()})
             
         }
     try{
         const existingUser: IUser | undefined = users.find(user => user.email === req.body.email)
-        //console.log(existingUser)
+        console.log(existingUser)
         if (existingUser) {
             return res.status(403).json({email: "Email already in use"})
         }
